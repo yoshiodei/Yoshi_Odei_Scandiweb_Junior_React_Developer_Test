@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import Navbar from '../Navigation/Navbar';
-import Cart from '../Pages/Cart';
-import Category from '../Pages/Category';
-import Products from '../Pages/Products';
+import CartPage from '../Pages/CartPage';
+import CategoryPage from '../Pages/CategoryPage';
+import ProductsPage from '../Pages/ProductsPage';
 
 class RoutesList extends Component {
     render() {
@@ -11,9 +11,9 @@ class RoutesList extends Component {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path="/" element={<Category />} />
-                    <Route path="/products" element={<Products />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/" element={<CategoryPage />} />
+                    <Route path="/products" element={<ProductsPage />} />
+                    <Route path="/cart" element={<CartPage />} />
                 </Routes>
             </Router>    
         );
