@@ -3,7 +3,7 @@
   height: 444px;
   min-width: 280px;
   max-width: 386px;
-  margin-top: 110px;
+  margin-top: 80px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -66,4 +66,4 @@
 .card__button-div:hover {
   cursor: pointer;
 }
-/*# sourceMappingURL=ProductCard.styles.css.map */
+/*# sourceMappingURL=CategoryCard.styles.css.map */

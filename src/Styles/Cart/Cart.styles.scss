@@ -1,0 +1,13 @@
+@import '../Variables';
+
+.cart {
+    padding: 80px 100px;
+    min-height: calc(100vh - 80px);
+
+    &__header {
+        font-size: 2em;
+        font-weight: 700;
+        line-height: 40px;
+        margin-bottom: 50px;
+    }
+}

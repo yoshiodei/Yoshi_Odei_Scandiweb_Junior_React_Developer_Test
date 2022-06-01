@@ -1,6 +1,175 @@
 @import '../Variables';
 
 .products {
-    padding: 80px 101px ;
-    height: calc(100vh - 80px);
+    padding: 80px 100px ;
+    min-height: calc(100vh - 80px);
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-column-gap: 80px;
+
+    &__product-tile {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        // background-color: rgb(102, 101, 101); 
+    }
+
+    &__alternative-product-div {
+        width: 80px;
+        height: 300px;
+        margin-right: 25px;
+    }
+
+    &__alternative-image-div {
+        width: 80px; 
+        height: 80px;
+        background-color: rgb(116, 116, 116);
+        margin-bottom: 30px;
+    }
+
+    &__main-product-div {
+        flex: 1;
+        min-height: 400px;
+        max-height: 450px;
+        background-color: rgb(116, 116, 116);
+    }
+
+    
+}
+
+.product-detail {
+        width: 100%;
+        min-height: 450px;
+        // background-color: rgb(116, 116, 116);
+
+        &__header {
+            font-size: 1.125em;
+            font-weight: 700;
+            line-height: 18px;
+            margin-bottom: 8px;
+        }
+
+        &__product-title-div {
+            margin-bottom: 40px;
+        }
+
+        &__product-name {
+            font-size: 1.875em;
+            font-weight: 400;
+            line-height: 27px;
+            
+            &--boldened {
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+        }
+
+        &__size-div {
+            margin-bottom: 25px;
+        }
+
+        &__size-inner-div {
+            height: 45px;
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__size {
+            height: 100%;
+            width: 65px;
+            border: 1px solid $secondaryColor;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.4s;
+
+            &:hover {
+                background-color: $secondaryColor;
+                color: white;
+            }
+        }
+
+        &__size-text {
+            text-align: center;
+            font-weight: 500;
+        }
+
+        &__color-div {
+            margin-bottom: 35px;
+        }
+
+        &__color-inner-div {
+            height: 32px;
+            display: flex;
+            justify-content: flex-start;
+        }
+
+        &__color {
+            height: 32px;
+            width: 32px;
+            background-color: #D3D2D5;
+            margin-right: 10px;
+            position: relative;
+            cursor: pointer;
+
+            &::after {
+                height: 34px;
+                width: 34px;
+                border: 1px solid $primaryColor;
+                content: '';
+                display: none;
+                position: absolute;
+                left: -2px;
+                top: -2px;
+            }
+
+            &:hover.product-detail__color::after{
+                display: block;
+            }
+
+            &--black { background-color: #2B2B2B; }
+            &--green { background-color: #0F6450; }
+        }
+
+        &__price {
+            font-size: 1.5em;
+            font-weight: 700;
+            line-height: 18px;
+        }
+
+        &__price-div {
+            margin-bottom: 20px;
+        }
+
+        &__submit-button {
+            color: white;
+            background-color: $primaryColor;
+            height: 52px;
+            width: 100%;
+            line-height: 19px;
+            font-weight: 600;
+            margin-bottom: 40px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.5s;
+
+            &:hover {
+                background-color: lighten($primaryColor, 5%);
+            }
+        }
+
+        &__dscription-div {
+            width: 95%;
+            height: auto;
+        }
+
+        &__dscription {
+            font-size: 1em;
+            font-weight: 400;
+            line-height: 25px;
+        }
+
+        
 }

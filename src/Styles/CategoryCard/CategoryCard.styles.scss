@@ -5,7 +5,7 @@
     height: 444px;
     min-width: 280px;
     max-width: 386px;
-    margin-top: 110px;
+    margin-top: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,7 +29,6 @@
             bottom: -26px;
             display: none;
             transition: all 0.5s;
-
     }
 
     &__item-name {

@@ -1,0 +1,12 @@
+.cart {
+  padding: 80px 100px;
+  min-height: calc(100vh - 80px);
+}
+
+.cart__header {
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 40px;
+  margin-bottom: 50px;
+}
+/*# sourceMappingURL=Cart.styles.css.map */
