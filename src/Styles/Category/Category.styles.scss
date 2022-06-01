@@ -1,7 +1,8 @@
 @import '../Variables';
 
 .category {
-    padding: 80px 101px 0;
+    padding: 80px 101px ;
+    min-height: calc(100vh - 80px);
 
     &__header {
         color: $secondaryColor;
@@ -9,4 +10,10 @@
         font-weight: 400;    
     }
     
+}
+
+.card-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 40px;
 }
