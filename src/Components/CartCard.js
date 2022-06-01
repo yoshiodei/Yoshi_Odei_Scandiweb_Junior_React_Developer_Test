@@ -48,17 +48,20 @@ class CartCard extends Component {
                     <div className='cart-card__right-div'>
                         <div className='cart-card__counter-div'>
                             <div className='cart-card__counter-button'>
-                                <p className='cart-card__counter-text'>+</p>
+                                <p className='cart-card__counter-button-text'>+</p>
                             </div>
                             <div className='cart-card__counter-value'>
                                 <p className='cart-card__counter-text'>1</p>
                             </div>
                             <div className='cart-card__counter-button'>
-                                <p className='cart-card__counter-text'>-</p>
+                                <p className='cart-card__counter-button-text'>-</p>
                             </div>
                         </div>
                         <div className='cart-card__image-div'>
-                            <div></div>
+                            <div className='cart-card__image-nav-div'>
+                                <div className='cart-card__image-nav'></div>
+                                <div className='cart-card__image-nav'></div>
+                            </div>
                         </div>
                     </div>
                 </div>

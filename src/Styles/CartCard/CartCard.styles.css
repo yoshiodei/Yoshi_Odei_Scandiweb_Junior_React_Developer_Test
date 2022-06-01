@@ -157,6 +157,14 @@
       -ms-flex-align: center;
           align-items: center;
   border: 1px solid #1D1F22;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+  cursor: pointer;
+}
+
+.cart-card__counter-button:hover {
+  background-color: #1D1F22;
+  color: white;
 }
 
 .cart-card__counter-text {
@@ -167,6 +175,31 @@
   height: 100%;
   width: 200px;
   position: relative;
-  background-color: #2B2B2B;
+  background-color: #797979;
+}
+
+.cart-card__image-nav-div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 24px;
+  width: 56px;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.cart-card__image-nav {
+  height: 24px;
+  width: 24px;
+  background-color: #0e0e0ea5;
+  cursor: pointer;
+}
+
+.cart-card__image-nav:hover {
+  background-color: rgba(20, 20, 20, 0.626);
 }
 /*# sourceMappingURL=CartCard.styles.css.map */

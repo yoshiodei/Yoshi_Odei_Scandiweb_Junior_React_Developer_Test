@@ -116,6 +116,13 @@
             justify-content: center;
             align-items: center;
             border: 1px solid $secondaryColor;
+            transition: all 0.4s;
+            cursor: pointer;
+
+            &:hover {
+                background-color: $secondaryColor;
+                color: white;
+            }
         }
 
         &__counter-text {
@@ -126,8 +133,28 @@
             height: 100%;
             width: 200px;
             position: relative;
-            background-color: #2B2B2B;
+            background-color: #797979;
         }
 
+        &__image-nav-div {
+            display: flex;
+            justify-content: space-between;
+            height: 24px;
+            width: 56px;
+            position: absolute;
+            right: 16px;
+            bottom: 16px;
+        }
+
+        &__image-nav {
+            height: 24px;
+            width: 24px;
+            background-color: #0e0e0ea5;
+            cursor: pointer;
+
+            &:hover {
+                background-color: lighten(rgba(0, 0, 0, 0.626),8%)
+            }
+        }
         
 }
