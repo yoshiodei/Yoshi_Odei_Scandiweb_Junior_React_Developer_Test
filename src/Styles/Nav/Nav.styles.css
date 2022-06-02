@@ -27,11 +27,20 @@
 }
 
 .navbar__list-item {
+  cursor: pointer;
   list-style: none;
   height: 100%;
   line-height: 80px;
   padding: 0 16px;
   border-bottom: 2px solid transparent;
+  -webkit-transition: all 0.7s;
+  transition: all 0.7s;
+}
+
+.navbar__list-item:hover {
+  border-bottom: 2px solid #5ECE7B;
+  color: #5ECE7B;
+  font-weight: 600;
 }
 
 .navbar__list-item--active {
@@ -44,13 +53,33 @@
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background-color: #5ECE7B;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.navbar__logo * {
+  height: 28px;
 }
 
 .navbar__icons {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  background-color: #1D1F22;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.navbar__icons p {
+  font-size: 1.125em;
+  font-weight: 500;
+  line-height: 28px;
 }
 /*# sourceMappingURL=Nav.styles.css.map */

@@ -4,7 +4,6 @@
     width: 100%;
     height: 80px;
     padding: 0 101px;
-    // background-color: lightgray;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -17,11 +16,19 @@
     }
 
     &__list-item {
+        cursor: pointer;
         list-style: none;
         height: 100%;
         line-height: 80px;
         padding: 0 16px;
         border-bottom: 2px solid transparent;
+        transition: all 0.7s;
+
+        &:hover {
+            border-bottom: 2px solid $primaryColor;
+            color: $primaryColor;
+            font-weight: 600;
+        }
 
         &--active {
             border-bottom: 2px solid $primaryColor;
@@ -32,13 +39,28 @@
 
     &__logo {
         flex: 1;
-        // width: 31px;
-        // height: 29px;
-        background-color: $primaryColor;
+        display: flex;
+        justify-content: center;
+
+        & * {
+            height: 28px;
+        }
     }
 
     &__icons {
         flex: 1;
-        background-color: $secondaryColor;
+        display: flex;
+        justify-content: flex-end;
+
+        & p {
+            font-size: 1.125em;
+            font-weight: 500;
+            line-height: 28px;
+        }
+        
     }
 }
+
+
+
+

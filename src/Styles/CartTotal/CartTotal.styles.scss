@@ -33,5 +33,10 @@
         font-size: 14px;
         font-weight: 600;
         color: white;
+
+        &:hover {
+            background-color: lighten($primaryColor,10%);
+        }
     }
+
 }
