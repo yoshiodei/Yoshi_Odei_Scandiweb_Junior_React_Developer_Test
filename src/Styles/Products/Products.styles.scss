@@ -2,7 +2,9 @@
 
 .products {
     padding: 80px 100px ;
-    min-height: calc(100vh - 80px);
+    height: calc(100vh - 80px);
+    overflow-y: scroll;
+    overflow-x: hidden;
     display: grid;
     grid-template-columns: 1fr 300px;
     grid-column-gap: 80px;

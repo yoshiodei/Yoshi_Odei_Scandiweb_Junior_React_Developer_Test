@@ -1,6 +1,8 @@
 .category {
   padding: 80px 101px;
-  min-height: calc(100vh - 80px);
+  height: calc(100vh - 80px);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .category__header {
