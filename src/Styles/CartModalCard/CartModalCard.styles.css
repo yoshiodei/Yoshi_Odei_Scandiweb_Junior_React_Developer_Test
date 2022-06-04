@@ -1,0 +1,192 @@
+.modal-card {
+  color: #1D1F22;
+  width: 100%;
+  height: 190px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-card__details-div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  height: 100%;
+}
+
+.modal-card__name-div {
+  margin-bottom: 4px;
+}
+
+.modal-card__name {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.modal-card__price-div {
+  margin-bottom: 8px;
+}
+
+.modal-card__price {
+  font-weight: 500;
+  line-height: 25px;
+}
+
+.modal-card__size-div {
+  margin-bottom: 8px;
+  width: 120px;
+}
+
+.modal-card__size-header {
+  font-size: 0.875em;
+  margin-bottom: 8px;
+  line-height: 16px;
+}
+
+.modal-card__size-inner-div {
+  width: 100%;
+  height: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-card__size {
+  height: 100%;
+  width: 24px;
+  border: 1px solid #1D1F22;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: all 0.5s;
+  transition: all 0.5s;
+}
+
+.modal-card__size p {
+  font-size: 0.875;
+}
+
+.modal-card__size:hover {
+  color: white;
+  background-color: #1D1F22;
+}
+
+.modal-card__color-div {
+  width: 64px;
+}
+
+.modal-card__color-header {
+  font-size: 0.875em;
+  margin-bottom: 8px;
+  line-height: 16px;
+}
+
+.modal-card__color-inner-div {
+  width: 100%;
+  height: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-card__color {
+  width: 16px;
+  height: 16px;
+  background-color: grey;
+  position: relative;
+  cursor: pointer;
+}
+
+.modal-card__color--black {
+  background-color: black;
+}
+
+.modal-card__color--green {
+  background-color: green;
+}
+
+.modal-card__item-div {
+  height: 100%;
+  width: 153px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-card__counter-div {
+  height: 100%;
+  width: 24px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-card__counter-button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 24px;
+  border: 1px solid #1D1F22;
+}
+
+.modal-card__counter-button-text {
+  text-align: center;
+}
+
+.modal-card__counter-value {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.modal-card__counter-text {
+  text-align: center;
+  font-weight: 500;
+}
+
+.modal-card__image-div {
+  height: 100%;
+  width: 121px;
+  background-color: #949393;
+}
+/*# sourceMappingURL=CartModalCard.styles.css.map */

@@ -1,0 +1,144 @@
+@import '../Variables';
+
+.modal-card {
+    color: $secondaryColor;
+    width: 100%;
+    height: 190px;
+    display: flex;
+    justify-content: space-between;
+
+    &__details-div {
+        flex: 1;
+        height: 100%;
+    }
+
+    &__name-div {
+        margin-bottom: 4px;
+    }
+
+    &__name {
+        font-size: 1em;
+        font-weight: 300;
+        line-height: 25px;
+    }
+
+    &__price-div {
+        margin-bottom: 8px;
+    }
+
+    &__price {
+        font-weight: 500;
+        line-height: 25px;
+    }
+
+    &__size-div {
+        margin-bottom: 8px;
+        width: 120px;
+    }
+
+    &__size-header {
+        font-size: 0.875em;
+        margin-bottom: 8px;
+        line-height: 16px;
+    }
+
+    &__size-inner-div {
+        width: 100%;
+        height: 24px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__size {
+        height: 100%;
+        width: 24px;
+        border: 1px solid $secondaryColor;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.5s;
+
+        & p {
+            font-size: 0.875;
+        }
+
+        &:hover {
+            color: white;
+            background-color: $secondaryColor;
+        }
+    }
+
+    &__color-div {
+        width: 64px;
+    }
+
+    &__color-header {
+        font-size: 0.875em;
+        margin-bottom: 8px;
+        line-height: 16px;
+    }
+
+    &__color-inner-div {
+        width: 100%;
+        height: 16px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__color {
+        width: 16px;
+        height: 16px;
+        background-color: grey;
+        position: relative;
+        cursor: pointer;
+
+        &--black { background-color: black; }
+        &--green { background-color: green; }
+    }
+
+    &__item-div {
+        height: 100%;
+        width: 153px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__counter-div {
+        height: 100%;
+        width: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    &__counter-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 24px;
+        border: 1px solid $secondaryColor;
+
+        &-text {
+            text-align: center;
+        }
+    }
+
+    &__counter-value {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &__counter-text {
+        text-align: center;
+        font-weight: 500;
+    }
+
+    &__image-div {
+        height: 100%;
+        width: 121px;
+        background-color: rgb(148, 147, 147);
+    }
+}
