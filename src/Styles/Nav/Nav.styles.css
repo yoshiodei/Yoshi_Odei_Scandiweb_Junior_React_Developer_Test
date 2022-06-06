@@ -15,16 +15,26 @@
 }
 
 .navbar__currency-switcher-div {
-  display: none;
+  display: block;
   position: absolute;
-  bottom: -115px;
+  top: 80px;
   right: 75px;
   width: 115px;
   height: auto;
+  overflow: hidden;
   cursor: pointer;
   background-color: white;
-  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.78);
-          box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.78);
+  height: 0;
+  -webkit-transform-origin: 0 0;
+          transform-origin: 0 0;
+  -webkit-box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.28);
+          box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.28);
+  -webkit-transition: height 0.4s;
+  transition: height 0.4s;
+}
+
+.navbar__currency-switcher-div--show {
+  height: 135px;
 }
 
 .navbar__cart-overlay-div {
@@ -35,6 +45,15 @@
   z-index: 3;
   background-color: #393748a8;
   color: #1D1F22;
+  pointer-events: none;
+  opacity: 0;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.navbar__cart-overlay-div--show {
+  pointer-events: auto;
+  opacity: 1;
 }
 
 .navbar__modal-title {
@@ -55,7 +74,7 @@
   z-index: 4;
   padding: 32px 16px;
   min-height: 150px;
-  max-height: calc(100vh - 300px);
+  max-height: calc(100vh - 200px);
   width: 325px;
   background-color: white;
 }
