@@ -2,12 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import Routes from './Components/Routes/Routes';
+import Routes from './Routes/Routes';
+import { ApolloProvider ,ApolloClient, InMemoryCache } from "@apollo/client";
+import { Provider } from 'react-redux'
+
+const client = new ApolloClient({
+  uri: "http://localhost:4000",
+  cache: new InMemoryCache(), 
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Routes />
+    <ApolloProvider client={client}>
+            <Routes />  
+    </ApolloProvider>
   </React.StrictMode>
 );
 
