@@ -1,7 +1,7 @@
 @import '../Variables';
 
 .products {
-    padding: 80px 100px ;
+    padding: 40px 100px 80px;
     height: calc(100vh - 80px);
     overflow-y: scroll;
     overflow-x: hidden;
@@ -18,25 +18,38 @@
 
     &__alternative-product-div {
         width: 80px;
-        height: 300px;
+        min-height: 300px;
         margin-right: 25px;
     }
 
     &__alternative-image-div {
         width: 80px; 
         height: 80px;
-        background-color: rgb(116, 116, 116);
         margin-bottom: 30px;
+
+        &--selected {
+            display: none;
+        }
     }
 
     &__main-product-div {
         flex: 1;
         min-height: 400px;
         max-height: 450px;
-        background-color: rgb(116, 116, 116);
     }
 
-    
+    &__main-product-image {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+    }
+
+    &__alternative-image {
+        @extend .products__main-product-image;
+        border: 1px solid rgba(211, 211, 211, 0.476);
+        cursor: pointer;
+    }
+
 }
 
 .product-detail {
@@ -66,20 +79,21 @@
             }
         }
 
-        &__size-div {
+        &__attribute-div {
             margin-bottom: 25px;
         }
 
-        &__size-inner-div {
+        &__attribute-inner-div {
             height: 45px;
             flex: 1;
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-start;
         }
 
-        &__size {
+        &__attribute {
             height: 100%;
-            width: 65px;
+            flex: 1;
+            margin-right: 10px;
             border: 1px solid $secondaryColor;
             display: flex;
             justify-content: center;
@@ -87,13 +101,17 @@
             cursor: pointer;
             transition: all 0.4s;
 
+            &:last-child {
+                margin-right: 0;
+            }
+
             &:hover {
                 background-color: $secondaryColor;
                 color: white;
             }
         }
 
-        &__size-text {
+        &__attribute-text {
             text-align: center;
             font-weight: 500;
         }
@@ -164,7 +182,8 @@
 
         &__dscription-div {
             width: 95%;
-            height: auto;
+            min-height: 50px;
+            padding-bottom: 50px;
         }
 
         &__dscription {

@@ -155,6 +155,7 @@
   height: 100%;
   line-height: 80px;
   padding: 0 16px;
+  letter-spacing: 0.02em;
   border-bottom: 2px solid transparent;
   -webkit-transition: all 0.7s;
   transition: all 0.7s;
@@ -164,6 +165,7 @@
   border-bottom: 2px solid #5ECE7B;
   color: #5ECE7B;
   font-weight: 600;
+  letter-spacing: 0em;
 }
 
 .navbar__list-item--active {
