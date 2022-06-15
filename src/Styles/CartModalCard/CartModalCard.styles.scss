@@ -18,56 +18,59 @@
     }
 
     &__name {
-        font-size: 1em;
+        font-size: 0.9em;
         font-weight: 300;
-        line-height: 25px;
     }
 
     &__price-div {
-        margin-bottom: 8px;
+        margin-bottom: 5px;
     }
 
     &__price {
+        font-size: 1em;
         font-weight: 500;
-        line-height: 25px;
     }
 
-    &__size-div {
-        margin-bottom: 8px;
+    &__attribute-div {
+        margin-bottom: 4px;
         width: 120px;
     }
 
-    &__size-header {
-        font-size: 0.875em;
-        margin-bottom: 8px;
-        line-height: 16px;
+    &__attribute-header {
+        font-size: 0.7em;
+        margin-bottom: 4px;
     }
 
-    &__size-inner-div {
+    &__attribute-inner-div {
         width: 100%;
-        height: 24px;
+        height: 18px;
         display: flex;
         justify-content: space-between;
     }
 
-    &__size {
+    &__attribute {
         height: 100%;
-        width: 24px;
+        flex: 1;
         border: 1px solid $secondaryColor;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
+        margin-right: 5px;
         transition: all 0.5s;
 
-        & p {
-            font-size: 0.875em;
+        &:last-child {
+            margin-right: 0;
         }
 
-        &:hover {
-            color: white;
-            background-color: $secondaryColor;
+        & p {
+            font-size: 0.75em;
         }
+
+        // &:hover {
+        //     color: white;
+        //     background-color: $secondaryColor;
+        // }
     }
 
     &__color-div {
@@ -138,6 +141,10 @@
             font-size: 1.3em;
             line-height: 20px;
             text-align: center;
+
+            &::selection {
+                background-color: transparent;
+            }
         }
 
         &:hover {
@@ -160,6 +167,14 @@
     &__image-div {
         height: 100%;
         width: 121px;
-        background-color: rgb(148, 147, 147);
+        overflow: hidden;
+        background-color: rgba(148, 147, 147, 0.169);
+    }
+
+    &__image {
+        height: 100%;
+        width: 190%;
+        object-fit: cover;
+        object-position: -50px 0;
     }
 }
