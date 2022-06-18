@@ -1,68 +1,75 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateCartList } from '../Redux/action';
 import '../Styles/CartCard/CartCard.styles.css';
+import CartCardCarousel from './CartCardCarousel';
+import CartPageAttributes from './CartPageAttributes';
 
 class CartCard extends Component {
+    constructor(props){
+        super(props);
+    }
+
+    addToQuantity = (id) => {
+        let newCartList = this.props.cartItems.map(cartItem => (
+            cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}
+            ));
+        this.props.updateCartList(newCartList);
+    }
+
+    subtractFromQuantity = (item) => {
+        if(item.quantity > 1) {
+            let newCartList = this.props.cartItems.map(
+                cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}
+                    ));
+            this.props.updateCartList(newCartList);
+        }
+        else {
+            let newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
+            this.props.updateCartList(newCartList);
+        }
+    }
+
     render() {
+        const {cartItem, currencyLabel} = this.props;
+        const price = cartItem.prices?.find(price => price.currency.label === currencyLabel.label)
+        
         return (
             <div className='cart-card'>
                 <div className='cart-card__details-div'>
                     <div className='cart-card__left-div'>
                         <div className='cart-card__product-title-div'>
-                            <h2 className='cart-card__product-name cart-card__product-name--boldened'>Apollo</h2>
-                            <h2 className='cart-card__product-name'>Running Short</h2>
+                            <h2 className='cart-card__product-name cart-card__product-name--boldened'>{cartItem.brand}</h2>
+                            <h2 className='cart-card__product-name'>{cartItem.name}</h2>
                         </div>
 
                         <div className='cart-card__price-div'>
-                            <p className='cart-card__price'>$50.00</p>
+                            <p className='cart-card__price'>{`${price?.currency?.symbol}${price?.amount}`}</p>
                         </div>
 
-                        <div className='cart-card__size-div'>
-                            <h4 className='cart-card__header'>SIZE:</h4>
-                            <div className='cart-card__size-inner-div'>
-                                <div className='cart-card__size'>
-                                    <h6 className='cart-card__size-text' >XS</h6>
-                                </div>
-                                <div className='cart-card__size'>
-                                    <h6 className='cart-card__size-text'>S</h6>
-                                </div>
-                                <div className='cart-card__size'>
-                                    <h6 className='cart-card__size-text'>M</h6>
-                                </div>
-                                <div className='cart-card__size'>
-                                    <h6 className='cart-card__size-text'>L</h6>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className='cart-card__color-div'>
-                            <h4 className='cart-card__header'>COLOR:</h4>
-                            <div className='cart-card__color-inner-div'>
-                                <div className='cart-card__color product-detail__color--grey'></div>
-                                <div className='cart-card__color product-detail__color--black'></div>
-                                <div className='cart-card__color product-detail__color--green'></div>
-                            </div>
-                        </div>
+                        {
+                        cartItem?.attributes?.map(attribute => (
+                            <CartPageAttributes attribute={attribute} selectedAttribute={cartItem.selectedAttribute} />
+                        ))    
+                        }
 
                     </div>
                     
                     <div className='cart-card__right-div'>
                         <div className='cart-card__counter-div'>
-                            <div className='cart-card__counter-button'>
+                            <div className='cart-card__counter-button' onClick={() => this.addToQuantity(cartItem.id)}>
                                 <p className='cart-card__counter-button-text'>+</p>
                             </div>
                             <div className='cart-card__counter-value'>
-                                <p className='cart-card__counter-text'>1</p>
+                                <p className='cart-card__counter-text'>{cartItem.quantity}</p>
                             </div>
-                            <div className='cart-card__counter-button'>
-                                <p className='cart-card__counter-button-text'>-</p>
-                            </div>
-                        </div>
-                        <div className='cart-card__image-div'>
-                            <div className='cart-card__image-nav-div'>
-                                <div className='cart-card__image-nav'></div>
-                                <div className='cart-card__image-nav'></div>
+                            <div className='cart-card__counter-button' onClick={()=> this.subtractFromQuantity(cartItem)}>
+                                <p className='cart-card__counter-button-text' >-</p>
                             </div>
                         </div>
+
+                        <CartCardCarousel gallery={cartItem.gallery} id={cartItem.id}  />
+
                     </div>
                 </div>
             </div>
@@ -70,4 +77,13 @@ class CartCard extends Component {
     }
 }
 
-export default CartCard;
+const mapStateToProps = (state) => {
+    return { 
+        cartItems : state.cartItems,
+        currencyLabel : state.currency
+    }
+}
+
+const mapDispatchToProps = { updateCartList };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartCard);
