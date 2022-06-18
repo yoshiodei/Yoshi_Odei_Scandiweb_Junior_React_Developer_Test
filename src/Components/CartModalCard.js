@@ -1,65 +1,71 @@
 import React, { Component } from 'react';
-import '../Styles/CartModalCard/CartModalCard.sttyles.scss';
+import { connect } from 'react-redux';
+import '../Styles/CartModalCard/CartModalCard.styles.css';
+import CartModalAttribute from './CartModalAttribute';
+import { updateCartList } from '../Redux/action';
 
 class CartModalCard extends Component {
+    constructor(props){
+        super(props)
+    }
+
+    addToQuantity = (id) => {
+        let newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}) )
+        this.props.updateCartList(newCartList);
+    }
+
+    subtractFromQuantity = (item) => {
+        if(item.quantity > 1) {
+            let newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}) )
+            this.props.updateCartList(newCartList);
+        }
+        else {
+            let newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
+            this.props.updateCartList(newCartList);
+        }
+    }
+
     render() {
+        const {item, currencyLabel} = this.props;
+        const price = item.prices?.find(item => item.currency.label === currencyLabel.label)
+        console.log(currencyLabel);
         return (
             <div className='modal-card'>
                 <div className='modal-card__details-div'>
                     <div className='modal-card__name-div'>
-                        <h3 className='modal-card__name'>Apollo</h3>
-                        <h3 className='modal-card__name' >Running Short</h3>
+                        <h3 className='modal-card__name'>{item.brand}</h3>
+                        <h3 className='modal-card__name' >{item.name}</h3>
                     </div>
 
                     <div className='modal-card__price-div'>
-                        <h3 className='modal-card__price'>$50.00</h3>
+                        <h3 className='modal-card__price'>{`${price?.currency?.symbol}${price?.amount}`}</h3>
                     </div>
 
-                    <div className='modal-card__size-div'>
-                        <h4 className='modal-card__size-header'>Size:</h4>
-                        <div className='modal-card__size-inner-div'>
-                            <div className='modal-card__size'>
-                                <p>XS</p>
-                            </div>
-                            <div className='modal-card__size'>
-                                <p>S</p>
-                            </div>
-                            <div className='modal-card__size'>
-                                <p>M</p>
-                            </div>
-                            <div className='modal-card__size'>
-                                <p>L</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className='modal-card__color-div'>
-                        <h4 className='modal-card__color-header'>Color:</h4>
-                        <div className='modal-card__color-inner-div'>
-                            <div className='modal-card__color'></div>
-                            <div className='modal-card__color modal-card__color--black'></div>
-                            <div className='modal-card__color modal-card__color--green'></div>
-                        </div>
-                    </div>
+                    {
+                        item?.attributes?.map(attribute => (
+                            <CartModalAttribute attribute={attribute} selectedAttribute={item.selectedAttribute} />
+                        ))    
+                    }
+        
                 </div>
-
                 <div className='modal-card__item-div'>
                     <div className='modal-card__counter-div'>
-                        <div className='modal-card__counter-button'>
+                        <div className='modal-card__counter-button' onClick={() => this.addToQuantity(item.id)}>
                             <p className='modal-card__counter-button-text'>+</p>
                         </div>
 
                         <div className='modal-card__counter-value'>
-                            <p className='modal-card__counter-text'>1</p>
+                            <p className='modal-card__counter-text'>{item.quantity}</p>
                         </div>
 
-                        <div className='modal-card__counter-button'>
+                        <div className='modal-card__counter-button' onClick={()=> this.subtractFromQuantity(item)}>
                             <p className='modal-card__counter-button-text'>-</p>
                         </div>
                     </div>
 
                     <div className='modal-card__image-div'>
                         <div className='modal-card__image-nav-div'>
+                            <img src={item.gallery} className='modal-card__image' alt='product' />
                             <div className='modal-card__image-nav'></div>
                             <div className='modal-card__image-nav'></div>
                         </div>
@@ -70,4 +76,13 @@ class CartModalCard extends Component {
     }
 }
 
-export default CartModalCard;
+const mapStateToProps = (state) => {
+    return { 
+        cartItems : state.cartItems,
+        currencyLabel : state.currency
+    }
+}
+
+const mapDispatchToProps = { updateCartList };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartModalCard);
