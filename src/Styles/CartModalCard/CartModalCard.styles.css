@@ -72,7 +72,6 @@
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  cursor: pointer;
   margin-right: 5px;
   -webkit-transition: all 0.5s;
   transition: all 0.5s;
@@ -83,11 +82,19 @@
 }
 
 .modal-card__attribute p {
-  font-size: 0.75em;
+  cursor: default;
+  font-size: 0.7em;
+}
+
+.modal-card__attribute--selected {
+  color: white;
+  background-color: #1D1F22;
 }
 
 .modal-card__color-div {
-  width: 64px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 .modal-card__color-header {
@@ -97,22 +104,29 @@
 }
 
 .modal-card__color-inner-div {
-  width: 100%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   height: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
 }
 
 .modal-card__color {
+  margin-right: 6px;
   width: 16px;
   height: 16px;
-  background-color: grey;
   position: relative;
-  cursor: pointer;
+  cursor: default;
+  border: 1px solid #dddddd;
+}
+
+.modal-card__color:last-child {
+  margin-right: 0;
 }
 
 .modal-card__color--selected::after {
@@ -122,16 +136,8 @@
   content: '';
   border: 1px solid #5ECE7B;
   z-index: 1;
-  top: -2px;
-  left: -2px;
-}
-
-.modal-card__color--black {
-  background-color: black;
-}
-
-.modal-card__color--green {
-  background-color: green;
+  top: -3px;
+  left: -3px;
 }
 
 .modal-card__item-div {
