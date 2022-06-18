@@ -12,6 +12,20 @@
   margin-bottom: 40px;
 }
 
+.cart::-webkit-scrollbar {
+  width: 12px;
+}
+
+.cart::-webkit-scrollbar-track {
+  border-radius: 6px;
+  background-color: rgba(241, 241, 241, 0.768);
+}
+
+.cart::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background-color: #b9b9b9;
+}
+
 .cart-section {
   width: 100%;
 }

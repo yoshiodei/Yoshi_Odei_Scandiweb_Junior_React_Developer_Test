@@ -82,6 +82,20 @@
   background-color: white;
 }
 
+.navbar__cart-overlay-modal::-webkit-scrollbar {
+  width: 8px;
+}
+
+.navbar__cart-overlay-modal::-webkit-scrollbar-track {
+  border-radius: 4px;
+  background-color: rgba(241, 241, 241, 0.768);
+}
+
+.navbar__cart-overlay-modal::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #b9b9b9;
+}
+
 .navbar__modal-button-div {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -155,6 +169,10 @@
   line-height: 28px;
   -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
+}
+
+.navbar__currency-switcher-list-item--selected {
+  background-color: #EEEEEE;
 }
 
 .navbar__currency-switcher-list-item:hover {
