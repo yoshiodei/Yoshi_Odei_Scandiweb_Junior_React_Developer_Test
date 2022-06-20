@@ -65,7 +65,7 @@ class CartModalCard extends Component {
 
                     <div className='modal-card__image-div'>
                         <div className='modal-card__image-nav-div'>
-                            <img src={item.gallery} className='modal-card__image' alt='product' />
+                            <img src={item.gallery[0]} className='modal-card__image' alt='product' />
                             <div className='modal-card__image-nav'></div>
                             <div className='modal-card__image-nav'></div>
                         </div>
