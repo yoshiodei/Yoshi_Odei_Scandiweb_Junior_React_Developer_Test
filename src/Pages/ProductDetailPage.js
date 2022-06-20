@@ -6,6 +6,7 @@ import ProductAttribute from '../Components/ProductAttribute';
 import { connect } from 'react-redux';
 import { addToCart } from '../Redux/action';
 import ErrorPage from './ErrorPage';
+import LoadingSpinner from '../Components/LoadingSpinner';
 
 class ProductDetailPage extends Component {
     constructor(props){
@@ -17,6 +18,10 @@ class ProductDetailPage extends Component {
 
         this.list = {}
 } 
+
+    componentDidMount(){
+        document.title = 'Junior Developer Test | Product Detail';
+    }
 
     addProductToCart = (product) => {
         let {selectedAttribute} = this.state;
@@ -59,7 +64,7 @@ class ProductDetailPage extends Component {
 
                        }>
                         {({loading, data, error}) => {
-                            if(loading) return <div>...Loading</div>
+                            if(loading) return <LoadingSpinner />
                             if(error) return <ErrorPage />
                             const {product} = data;
                             const price = product.prices?.find(price => price.currency.label === currencyLabel.label);

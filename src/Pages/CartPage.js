@@ -9,6 +9,10 @@ class CartPage extends Component {
         super(props);
     }
 
+    componentDidMount(){
+        document.title = 'Junior Developer Test | Cart';
+    }
+
     render() {
         const {cartItems, currencyLabel} = this.props;
 

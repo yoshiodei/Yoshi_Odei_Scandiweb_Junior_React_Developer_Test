@@ -21,10 +21,10 @@ class CategoryCard extends Component {
         const {product,currencyLabel} = this.props; 
         const price = product.prices?.find(price => price.currency.label === currencyLabel.label)
         return (
-            <Link to={product.inStock ? `products/${product.id}` : `/`}  className='card' key={product.id} >
+            <Link  to={(product.inStock) ? `products/${product.id}` : `/`}  className='card' key={product.id} >
                 <div className='card__image-div'>
                     <img src={product.gallery[0]} alt='product' className='card__image' />
-                    { product.inStock && <div className="card__button-div" onClick={() => this.addProductToCart(product)}>
+                    { product.inStock && <div className='card__button-div' onClick={()=> this.addProductToCart(product)}>
                         <img src={cart_white} alt="cart" className="card__button-image" />    
                     </div>}
                 </div>
