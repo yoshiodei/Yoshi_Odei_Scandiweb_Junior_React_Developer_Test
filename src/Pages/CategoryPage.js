@@ -4,25 +4,32 @@ import '../Styles/Category/Category.styles.css';
 import { GET_ALL_PRODUCTS } from '../EndPointQueries/queries';
 import { Query } from "@apollo/client/react/components";
 import ErrorPage from './ErrorPage';
+import LoadingSpinner from '../Components/LoadingSpinner';
 
 class CategoryPage extends Component {
     render() {
         return (
             <div className='category'>
-                <h1 className='category__header'>Category name</h1>
-                <section className='card-section'>
+                
+                
                     <Query query={GET_ALL_PRODUCTS}>
                         {({loading, data, error}) => {
-                            if(loading) return <div>...Loading</div>
+                            if(loading) return <LoadingSpinner />
                             if(error) return <ErrorPage />
                             const {products} = data.category;
-                            return products.map(product => (
+                            return (
+                                <>
+                                <h1 className='category__header'>All</h1>
+                                <section className='card-section'>
+                                    {products.map(product => (
                                     <CategoryCard product={product} />
-                                ))                          
+                                )) }
+                            </section>
+                            </>
+                            )
                             }
                         }
                     </Query>
-                </section>
             </div>
         );
     }
