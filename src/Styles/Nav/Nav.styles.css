@@ -113,6 +113,17 @@
   color: lightgrey;
 }
 
+.navbar__modal-total {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+}
+
 .navbar__modal-button {
   font-size: 0.875em;
   font-weight: 600;

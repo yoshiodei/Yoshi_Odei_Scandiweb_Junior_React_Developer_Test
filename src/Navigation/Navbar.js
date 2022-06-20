@@ -7,6 +7,8 @@ import arrow from '../Assets/arrow.svg';
 import CartModalCard from '../Components/CartModalCard';
 import CurrencySwitcher from '../Components/CurrencySwitcher';
 import {connect} from 'react-redux';
+import CartModalTotal from '../Components/CartModalTotal';
+import { updateCartList, changeCurrency } from '../Redux/action';
 
 
 class Navbar extends Component {
@@ -16,6 +18,11 @@ class Navbar extends Component {
     }
 
     componentDidMount() {
+        const cartItem = window.sessionStorage.getItem('cartItem');
+        const currency = window.sessionStorage.getItem('currency');
+        if(cartItem) this.props.updateCartList(JSON.parse(cartItem));
+        if(currency) this.props.changeCurrency(JSON.parse(currency));
+
         const [cartOverlayModal] = document.getElementsByClassName('navbar__cart-overlay-div');
         const [currencySwitcherCaret] = document.getElementsByClassName('navbar__button-icon');
         const [currencySwitcher] = document.getElementsByClassName('navbar__currency-switcher-div');
@@ -32,6 +39,10 @@ class Navbar extends Component {
         this.state.cartOverlayModal.classList.remove('navbar__cart-overlay-div--show');
         this.state.currencySwitcherCaret.classList.toggle('navbar__button-icon--open');
         this.state.currencySwitcher.classList.toggle('navbar__currency-switcher-div--show');
+    }
+
+    preventPropagation = (e) => {
+        if(e.target === this.state.cartOverlayModal) this.toggleModal();
     }
 
     render() {
@@ -64,15 +75,16 @@ class Navbar extends Component {
 
                <CurrencySwitcher toggleCurrencySwitcher={this.toggleCurrencySwitcher} />
 
-               <div className='navbar__cart-overlay-div'>
+               <div className='navbar__cart-overlay-div' onClick={(e) => this.preventPropagation(e)}>
                     <div className='navbar__cart-overlay-modal'>
                         <h3 className='navbar__modal-title'><span className='navbar__modal-title navbar__modal-title--boldened'>
                             My Bag, </span> {cartItems.length} {`item${(cartItems.length > 1)? 's':''}`}
                         </h3>
                             {(cartItems.length !== 0) ?
-                                (cartItems.map(item => (
+                                <>{(cartItems.map(item => (
                                     <CartModalCard item={item} />
-                                ))) :
+                                )))
+                                }<CartModalTotal /></> :
                                 <h3 className='navbar__cart-empty-header'>Cart is Empty</h3>
                             }
                         <div className='navbar__modal-button-div'>
@@ -93,6 +105,6 @@ const mapStateToProps = (state) => {
      }
 }
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = { updateCartList, changeCurrency }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar);
