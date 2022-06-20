@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../Styles/ErrorScreens/ErrorScreens.css';
 import { Link } from 'react-router-dom'; 
+import LoadingSpinner from '../Components/LoadingSpinner';
 
 class PageNotFound extends Component {
     render() {
@@ -12,6 +13,7 @@ class PageNotFound extends Component {
                         <h3>Go Back To Home Page</h3>
                     </Link>
                 </div>
+                
             </section>
         );
     }
