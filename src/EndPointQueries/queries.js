@@ -19,6 +19,7 @@ query ($product_id: String!){
 	product(id: $product_id){
     id
     name
+    inStock
     gallery
     description
     brand
@@ -32,6 +33,29 @@ query {
 	currencies {
     label
     symbol
+  }
+}
+`
+export const GET_CATEGORIES = gql`
+query {
+	categories {
+    name
+  }
+}
+`
+export const GET_PRODUCTS = gql`
+query($categoryName: String!) {
+  category(input: { title: $categoryName}){
+   name 
+   products {
+    	id
+    	name
+      inStock
+      gallery
+      attributes { id }
+      prices { currency {label, symbol}, amount }
+      brand
+  }
   }
 }
 `
