@@ -11,24 +11,26 @@ class CategoryCard extends Component {
     }
 
     addProductToCart = (product) =>{
-        let cartProduct = {...product, quantity: 1};
-        let foundItemInCart = this.props.cartItems.find(item => item.id == product.id);
+        const cartProduct = {...product, quantity: 1};
+        const foundItemInCart = this.props.cartItems.find(item => item.id == product.id);
         if(!foundItemInCart && !product.attributes.length) this.props.addToCart(cartProduct);
     }
 
 
     render() {
         const {product,currencyLabel} = this.props; 
-        const price = product.prices?.find(price => price.currency.label === currencyLabel.label)
+        const price = product.prices?.find(price => price.currency.label === currencyLabel.label);
+        const displayPrice = price?.amount.toFixed(2);
+
         return (
-            <div className='card-div'>
-                <Link  to={(product.inStock) ? `products/${product.id}` : `/`}  className='card' key={product.id} >
+            <div className='card-div' key={product.id}>
+                <Link  to={`/products/${product.id}`}  className='card'  >
                     <div className='card__image-div'>
                         <img src={product.gallery[0]} alt='product' className='card__image' />
                     </div>
                     <div className="card__text-div">
-                        <p className="card__item-name">{product.name}</p>
-                        <p className="card__item-price">{`${price?.currency?.symbol}${price?.amount}`}</p>
+                        <p className="card__item-name">{product.brand} {product.name}</p>
+                        <p className="card__item-price">{`${price?.currency?.symbol}${displayPrice}`}</p>
                     </div>
                     { !product.inStock && <div className='card__out-of-stock'><h2>OUT OF STOCK</h2></div>}
                 </Link>
