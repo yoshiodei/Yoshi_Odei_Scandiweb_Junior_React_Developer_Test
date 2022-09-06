@@ -49,7 +49,6 @@ class CartCardCarousel extends Component {
 
     render() {
         const {gallery,id} = this.props;
-        console.log( 'item id is', id );
 
         return (
             <div className='cart-card__image-div'>                

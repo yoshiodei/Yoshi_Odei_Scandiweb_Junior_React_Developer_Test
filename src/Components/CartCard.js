@@ -10,22 +10,23 @@ class CartCard extends Component {
         super(props);
     }
 
+
     addToQuantity = (id) => {
-        let newCartList = this.props.cartItems.map(cartItem => (
+        const newCartList = this.props.cartItems.map(cartItem => (
             cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}
             ));
-        this.props.updateCartList(newCartList);
+            this.props.updateCartList(newCartList);
     }
 
     subtractFromQuantity = (item) => {
         if(item.quantity > 1) {
-            let newCartList = this.props.cartItems.map(
+            const newCartList = this.props.cartItems.map(
                 cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}
                     ));
-            this.props.updateCartList(newCartList);
+                    this.props.updateCartList(newCartList);
         }
         else {
-            let newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
+            const newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
             this.props.updateCartList(newCartList);
         }
     }
@@ -33,7 +34,9 @@ class CartCard extends Component {
     render() {
         const {cartItem, currencyLabel} = this.props;
         const price = cartItem.prices?.find(price => price.currency.label === currencyLabel.label)
-        
+        const {symbol} = price?.currency
+        const displayPrice = price?.amount.toFixed(2);
+
         return (
             <div className='cart-card'>
                 <div className='cart-card__details-div'>
@@ -44,7 +47,7 @@ class CartCard extends Component {
                         </div>
 
                         <div className='cart-card__price-div'>
-                            <p className='cart-card__price'>{`${price?.currency?.symbol}${price?.amount}`}</p>
+                            <p className='cart-card__price'>{`${symbol}${displayPrice}`}</p>
                         </div>
 
                         {
