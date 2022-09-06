@@ -16,9 +16,9 @@ class CartPageAttributes extends Component {
                             <h4 className='cart-card__header'>{attribute.name}:</h4>
                             <div className='cart-card__attribute-inner-div'>
                             {attribute.items.map( item => (
-                                <div 
+                                <div key={item.id}
                                     className={(selectedAttribute[attribute.name] === item.displayValue) ? 'cart-card__attribute cart-card__attribute--selected' : 'cart-card__attribute'}>
-                                    <h6 className='cart-card__attribute-text' key={item.id}>
+                                    <h6 className='cart-card__attribute-text' >
                                         {item.value}
                                     </h6>
                                 </div>
