@@ -10,17 +10,17 @@ class CartModalCard extends Component {
     }
 
     addToQuantity = (id) => {
-        let newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}) )
+        const newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}) )
         this.props.updateCartList(newCartList);
     }
 
     subtractFromQuantity = (item) => {
         if(item.quantity > 1) {
-            let newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}) )
+            const newCartList = this.props.cartItems.map(cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}) )
             this.props.updateCartList(newCartList);
         }
         else {
-            let newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
+            const newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
             this.props.updateCartList(newCartList);
         }
     }
@@ -28,7 +28,8 @@ class CartModalCard extends Component {
     render() {
         const {item, currencyLabel} = this.props;
         const price = item.prices?.find(item => item.currency.label === currencyLabel.label)
-        console.log(currencyLabel);
+        const displayPrice = price?.amount.toFixed(2);
+        
         return (
             <div className='modal-card'>
                 <div className='modal-card__details-div'>
@@ -38,7 +39,7 @@ class CartModalCard extends Component {
                     </div>
 
                     <div className='modal-card__price-div'>
-                        <h3 className='modal-card__price'>{`${price?.currency?.symbol}${price?.amount}`}</h3>
+                        <h3 className='modal-card__price'>{`${price?.currency?.symbol}${displayPrice}`}</h3>
                     </div>
 
                     {

@@ -169,14 +169,16 @@
     &__image-div {
         height: 100%;
         width: 121px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         overflow: hidden;
-        background-color: rgba(148, 147, 147, 0.169);
+        background-color: white;
     }
 
     &__image {
         height: 100%;
-        width: 190%;
-        object-fit: cover;
-        object-position: -50px 0;
+        width: 100%;
+        object-fit: contain;
     }
 }
