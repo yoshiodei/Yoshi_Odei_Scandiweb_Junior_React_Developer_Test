@@ -1,4 +1,9 @@
-import { UPDATE_CART_LIST ,CHANGE_CURRENCY, ADD_TO_CART } from './action.type';
+import { 
+    UPDATE_CART_LIST,
+    CHANGE_CURRENCY, 
+    ADD_TO_CART,
+    CHANGE_CATEGORY,
+} from './action.type';
 
 export const addToCart = (cartItemObject) => {
    return{ 
@@ -19,4 +24,11 @@ export const updateCartList = (updatedCartList) => {
         type: UPDATE_CART_LIST,
         payload: updatedCartList
     }
+}
+
+export const changeCategory = (categoryName) => {
+  return {
+    type: CHANGE_CATEGORY,
+    payload: categoryName
+  }
 }

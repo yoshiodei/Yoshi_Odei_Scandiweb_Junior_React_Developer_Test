@@ -1,3 +1,4 @@
 export const UPDATE_CART_LIST = 'UPDATE_CART_LIST';
 export const CHANGE_CURRENCY = 'CHANGE_CURRENCY';
 export const ADD_TO_CART = 'ADD_TO_CART';
+export const CHANGE_CATEGORY = 'CHANGE_CATEGORY';
