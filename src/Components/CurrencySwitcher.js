@@ -15,36 +15,40 @@ class CurrencySwitcher extends Component {
     }
 
     switchCurrency = (e, currency, index) => {
-        for(let currency of this.state.currencyGroup){
+        for(const currency of this.state.currencyGroup){
             currency.classList.remove('navbar__currency-switcher-list-item--selected');
         }
         e.target.classList.add('navbar__currency-switcher-list-item--selected');
 
-        let currencyObject = {...currency, index}
+        const currencyObject = {...currency, index}
         this.props.changeCurrency(currencyObject);
-        this.props.toggleCurrencySwitcher();
+        toggleCurrencySwitcher();
     }
 
     render() {
-        const {currencies} = this.props;
+        const {toggleCurrencySwitcher} = this.props;
 
         return (
-            <ul className='navbar__currency-switcher-div'>
-                <Query query={GET_ALL_CURRENCY}>
-                    {({loading, data, error}) => {
-                        if(loading) return <div>...Loading</div>
-                        if(error) return <div>...Error</div>
-                        const {currencies} = data;
-                        return (currencies.map((currency,index) => (
-                                    <li className={(index === 0) ? 'navbar__currency-switcher-list-item navbar__currency-switcher-list-item--selected' : 'navbar__currency-switcher-list-item'} 
-                                        key={index} onClick={(e) => this.switchCurrency(e,currency,index)}>
-                                        { `${currency.symbol} ${currency.label}` }
-                                    </li>
-                                )))
+            <div className='navbar__currency-switcher-div' onClick={()=> toggleCurrencySwitcher()}>
+                <ul className='navbar__currency-switcher-list' >
+                    <Query query={GET_ALL_CURRENCY}
+                        
+                    >
+                        {({loading, data, error}) => {
+                            if(loading) return <div>...Loading</div>
+                            if(error) return <div>...Error</div>
+                            const {currencies} = data;
+                            return (currencies.map((currency,index) => (
+                                        <li className={(index === 0) ? 'navbar__currency-switcher-list-item navbar__currency-switcher-list-item--selected' : 'navbar__currency-switcher-list-item'} 
+                                            key={index} onClick={(e) => this.switchCurrency(e,currency,index)}>
+                                            { `${currency.symbol} ${currency.label}` }
+                                        </li>
+                                    )))
+                            }
                         }
-                    }
-                </Query>
-            </ul>
+                    </Query>
+                </ul>
+            </div>
         );
     }
 }
