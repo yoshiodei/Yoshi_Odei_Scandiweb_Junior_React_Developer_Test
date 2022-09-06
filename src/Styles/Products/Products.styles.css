@@ -191,7 +191,7 @@
   margin-bottom: 20px;
 }
 
-.product-detail__submit-button {
+.product-detail__submit-button, .product-detail__submit-button--disabled {
   color: white;
   background-color: #5ECE7B;
   height: 52px;
@@ -205,8 +205,12 @@
   transition: background-color 0.5s;
 }
 
-.product-detail__submit-button:hover {
+.product-detail__submit-button:hover, .product-detail__submit-button--disabled:hover {
   background-color: #72d48b;
+}
+
+.product-detail__submit-button--disabled {
+  cursor: not-allowed;
 }
 
 .product-detail__dscription-div {

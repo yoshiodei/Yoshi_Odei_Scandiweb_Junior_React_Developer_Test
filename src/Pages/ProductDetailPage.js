@@ -6,6 +6,7 @@ import ProductAttribute from '../Components/ProductAttribute';
 import { connect } from 'react-redux';
 import { addToCart } from '../Redux/action';
 import ErrorPage from './ErrorPage';
+import htmlParser from 'html-react-parser';
 import LoadingSpinner from '../Components/LoadingSpinner';
 
 class ProductDetailPage extends Component {
@@ -24,15 +25,17 @@ class ProductDetailPage extends Component {
     }
 
     addProductToCart = (product) => {
-        let {selectedAttribute} = this.state;
+        const {selectedAttribute} = this.state;
         let newProductId = product.id;
+        const isInStock = product.inStock;
+
         for(let key in selectedAttribute){
             newProductId += `${key}${selectedAttribute[key]}`
         }
-        let foundItemInCart = this.props.cartItems.find(item => item.id == newProductId);
+        const foundItemInCart = this.props.cartItems.find(item => item.id == newProductId);
 
-        if(!foundItemInCart){
-            let cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute};
+        if(!foundItemInCart && isInStock){
+            const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute};
             this.props.addToCart(cartProduct);
         } 
     }
@@ -41,9 +44,7 @@ class ProductDetailPage extends Component {
         let attributeSelect = {selectedAttribute: {...this.state.selectedAttribute, ...attributeObject}};
         console.log('attributeObject', attributeSelect);
         this.setState(attributeSelect)
-    }
-
-    
+    }    
 
     render() {
         const {currencyLabel} = this.props; 
@@ -52,22 +53,18 @@ class ProductDetailPage extends Component {
             <>
                 <Query query={GET_PRODUCT_DETAIL} 
                        variables={{ product_id: window.location.pathname.split('/')[2] }}
-                       onCompleted={(data) =>
-                            // this.setState({ attributesList : data.product.attributes })
-                            
+                       onCompleted={(data) => 
                             data.product.attributes.forEach(attribute => {
-                                // this.list.push({[attribute.name] : attribute.items[0].displayValue})
                                 this.list = { ...this.list , [attribute.name] : attribute.items[0].displayValue}
                                 this.setState({selectedAttribute: this.list})
-                            })
-                            
-
-                       }>
+                        })}>
                         {({loading, data, error}) => {
                             if(loading) return <LoadingSpinner />
                             if(error) return <ErrorPage />
                             const {product} = data;
                             const price = product.prices?.find(price => price.currency.label === currencyLabel.label);
+                            const displayPrice = price?.amount.toFixed(2);
+                            
                             return ( 
                                 <section className='products'>
                                     <div className='products__product-tile'>
@@ -98,20 +95,22 @@ class ProductDetailPage extends Component {
                                                     attribute={attribute}   
                                                     index={index} 
                                                     changeAttributeValue={this.changeAttributeValue}
-                                                    // addToSelectedAttribute={this.addToSelectedAttribute} 
                                                     />
                                             ))
                                         }
 
                                         <div className='product-detail__price-div'>
                                             <h4 className='product-detail__header'>PRICE:</h4>
-                                            <p className='product-detail__price'>{`${price?.currency?.symbol}${price?.amount}`}</p>
+                                            <p className='product-detail__price'>{`${price?.currency?.symbol}${displayPrice}`}</p>
                                         </div>
 
-                                        <button className='product-detail__submit-button' onClick={()=> this.addProductToCart(product)}>ADD TO CART</button>
+                                        <button className={ product.inStock ? 'product-detail__submit-button' : 'product-detail__submit-button--disabled' } 
+                                                title={ product.inStock ? null : 'product out of stock'}
+                                                onClick={()=> this.addProductToCart(product)}>ADD TO CART
+                                        </button>
 
-                                        <div className='product-detail__dscription-div'
-                                             dangerouslySetInnerHTML={{ __html: product.description}} >  
+                                        <div className='product-detail__dscription-div'>
+                                            { htmlParser(product.description) }
                                         </div>
                                     </div>
                                 </section>
