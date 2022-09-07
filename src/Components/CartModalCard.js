@@ -31,7 +31,7 @@ class CartModalCard extends Component {
         const displayPrice = price?.amount.toFixed(2);
         
         return (
-            <div className='modal-card'>
+            <div className='modal-card' key={item.id}>
                 <div className='modal-card__details-div'>
                     <div className='modal-card__name-div'>
                         <h3 className='modal-card__name'>{item.brand}</h3>

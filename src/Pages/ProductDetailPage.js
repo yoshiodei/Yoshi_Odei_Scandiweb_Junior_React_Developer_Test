@@ -18,7 +18,7 @@ class ProductDetailPage extends Component {
         }
 
         this.list = {}
-} 
+    } 
 
     componentDidMount(){
         document.title = 'Junior Developer Test | Product Detail';
@@ -32,6 +32,9 @@ class ProductDetailPage extends Component {
         for(let key in selectedAttribute){
             newProductId += `${key}${selectedAttribute[key]}`
         }
+
+        console.log(newProductId);
+
         const foundItemInCart = this.props.cartItems.find(item => item.id == newProductId);
 
         if(!foundItemInCart && isInStock){

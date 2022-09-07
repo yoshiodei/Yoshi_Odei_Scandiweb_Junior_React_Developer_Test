@@ -22,7 +22,7 @@ class CurrencySwitcher extends Component {
 
         const currencyObject = {...currency, index}
         this.props.changeCurrency(currencyObject);
-        toggleCurrencySwitcher();
+        this.props.toggleCurrencySwitcher();
     }
 
     render() {
