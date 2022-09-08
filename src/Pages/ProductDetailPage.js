@@ -28,14 +28,13 @@ class ProductDetailPage extends Component {
         const {selectedAttribute} = this.state;
         let newProductId = product.id;
         const isInStock = product.inStock;
+        console.log("here is the product",product);
 
         for(let key in selectedAttribute){
             newProductId += `${key}${selectedAttribute[key]}`
         }
 
-        console.log(newProductId);
-
-        const foundItemInCart = this.props.cartItems.find(item => item.id == newProductId);
+        const foundItemInCart = this.props.cartItems.find(item => item.id === newProductId);
 
         if(!foundItemInCart && isInStock){
             const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute};

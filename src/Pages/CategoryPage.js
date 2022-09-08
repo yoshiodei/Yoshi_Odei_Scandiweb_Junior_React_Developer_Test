@@ -14,6 +14,7 @@ class CategoryPage extends Component {
 
     render() {
         const variable = window.location.pathname.split('/')[1];
+        
 
         return (
             <div className='category'>
@@ -30,13 +31,13 @@ class CategoryPage extends Component {
                             if(error) return <ErrorPage />
                             const {products} = data.category;
                             return (
-                                <>
+                            <>
                                 <h1 className='category__header'>{variable}</h1>
                                 <section className='card-section'>
-                                    {products.map(product => (
-                                    <CategoryCard product={product} />
-                                )) }
-                            </section>
+                                    {products.map(product => (  
+                                       <CategoryCard product={product} />
+                                    )) }
+                                </section>
                             </>
                             )
                             }
