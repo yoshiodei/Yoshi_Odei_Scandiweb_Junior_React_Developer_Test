@@ -5,7 +5,7 @@ query  {
   category {
     products {
       id, name, inStock, gallery,brand
-      attributes { id }
+      attributes {id, name, type, items { displayValue, value, id } }
       prices {
         amount,
         currency { label, symbol } 
@@ -52,9 +52,9 @@ query($categoryName: String!) {
     	name
       inStock
       gallery
-      attributes { id }
-      prices { currency {label, symbol}, amount }
       brand
+      prices { currency {label, symbol}, amount }
+      attributes {id, name, type, items { displayValue, value, id } }
   }
   }
 }
