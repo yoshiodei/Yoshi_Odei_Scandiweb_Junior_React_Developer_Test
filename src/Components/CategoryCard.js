@@ -8,12 +8,25 @@ import { addToCart } from '../Redux/action';
 class CategoryCard extends Component {
     constructor(props){
         super(props);
-    }
+    } 
 
     addProductToCart = (product) =>{
-        const cartProduct = {...product, quantity: 1};
-        const foundItemInCart = this.props.cartItems.find(item => item.id == product.id);
-        if(!foundItemInCart && !product.attributes.length) this.props.addToCart(cartProduct);
+        
+        let newProductId = product.id;
+        let newList = {};
+
+        if(product.attributes.length >= 1){
+            product.attributes.forEach(attribute=>{
+                newProductId += `${attribute.name}${attribute.items[0].displayValue}`;
+                newList = { ...newList , [attribute.name] : attribute.items[0].displayValue};
+            });
+        }
+           console.log("le liste", newList);
+        const foundItemInCart = this.props.cartItems.find(item => item.id === newProductId);
+        if(!foundItemInCart){
+            const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute: newList};
+            this.props.addToCart(cartProduct);
+        } 
     }
 
 
