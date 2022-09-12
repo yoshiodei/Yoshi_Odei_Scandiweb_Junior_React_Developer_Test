@@ -27,24 +27,24 @@ class ProductDetailPage extends Component {
     addProductToCart = (product) => {
         const {selectedAttribute} = this.state;
         let newProductId = product.id;
+        const {name} = product
         const isInStock = product.inStock;
-        console.log("here is the product",product);
 
         for(let key in selectedAttribute){
             newProductId += `${key}${selectedAttribute[key]}`
         }
 
-        const foundItemInCart = this.props.cartItems.find(item => item.id === newProductId);
+        const foundItemInCart = this.props.cartObject[name]?.find(item => item.id === newProductId);
 
         if(!foundItemInCart && isInStock){
             const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute};
-            this.props.addToCart(cartProduct);
+            this.props.addToCart({addKey: name, addItem: cartProduct});
         } 
+
     }
 
     changeAttributeValue = (attributeObject) => {
         let attributeSelect = {selectedAttribute: {...this.state.selectedAttribute, ...attributeObject}};
-        console.log('attributeObject', attributeSelect);
         this.setState(attributeSelect)
     }    
 
@@ -128,7 +128,8 @@ class ProductDetailPage extends Component {
 const mapStateToProps = (state) => {
     return { 
         cartItems : state.cartItems,
-        currencyLabel : state.currency
+        currencyLabel : state.currency,
+        cartObject : state.cartObject
     }
 }
 
