@@ -11,21 +11,23 @@ class CategoryCard extends Component {
     } 
 
     addProductToCart = (product) =>{
-        
+        const {name} = product;
         let newProductId = product.id;
         let newList = {};
-
+        
         if(product.attributes.length >= 1){
             product.attributes.forEach(attribute=>{
                 newProductId += `${attribute.name}${attribute.items[0].displayValue}`;
                 newList = { ...newList , [attribute.name] : attribute.items[0].displayValue};
             });
         }
-           console.log("le liste", newList);
-        const foundItemInCart = this.props.cartItems.find(item => item.id === newProductId);
+
+        
+
+        const foundItemInCart = this.props.cartObject[name]?.find(item => item.id === newProductId);
         if(!foundItemInCart){
             const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute: newList};
-            this.props.addToCart(cartProduct);
+            this.props.addToCart({addKey: name, addItem: cartProduct});
         } 
     }
 
@@ -60,7 +62,8 @@ class CategoryCard extends Component {
 const mapStateToProps = (state) => {
     return { 
         cartItems : state.cartItems,
-        currencyLabel : state.currency
+        currencyLabel : state.currency,
+        cartObject: state.cartObject
     }
 }
 
