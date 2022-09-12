@@ -1,8 +1,10 @@
 import { 
     UPDATE_CART_LIST,
+    UPDATE_CART_OBJECT,
     CHANGE_CURRENCY, 
     ADD_TO_CART,
     CHANGE_CATEGORY,
+    RESTORE_CART_OBJECT
 } from './action.type';
 
 export const addToCart = (cartItemObject) => {
@@ -25,10 +27,24 @@ export const updateCartList = (updatedCartList) => {
         payload: updatedCartList
     }
 }
+             
+export const updateCartObject = (updatedCartObject) => {
+    return {
+        type: UPDATE_CART_OBJECT,
+        payload: updatedCartObject
+    }
+}
 
 export const changeCategory = (categoryName) => {
   return {
     type: CHANGE_CATEGORY,
     payload: categoryName
+  }
+}
+
+export const restoreCartObject = (cartObject) => {
+  return {
+    type: RESTORE_CART_OBJECT,
+    payload: cartObject
   }
 }
