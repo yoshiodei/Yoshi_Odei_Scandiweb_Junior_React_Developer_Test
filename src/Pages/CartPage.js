@@ -14,19 +14,24 @@ class CartPage extends Component {
     }
 
     render() {
-        const {cartItems, currencyLabel} = this.props;
+        const {cartItems, currencyLabel, cartObject} = this.props;
+
+        let newCartList = [];
+        for(let key in cartObject){
+           newCartList = [ ...newCartList , ...cartObject[key]];    
+        }
 
         return (
             <div className='cart'>
                 <h1 className='cart__header'>CART</h1>
                 <section className='cart-section'>
                     {
-                        cartItems.map(cartItem => (
+                        newCartList.map(cartItem => (
                             <CartCard cartItem={cartItem} currencyLabel={currencyLabel}/>
                         ))   
                     }
                     
-                    <CartTotal />
+                    <CartTotal cartList={newCartList} />
                 </section>
             </div>
         );
@@ -36,7 +41,8 @@ class CartPage extends Component {
 const mapStateToProps = (state) => {
     return { 
         cartItems : state.cartItems,
-        currencyLabel : state.currency
+        currencyLabel : state.currency,
+        cartObject : state.cartObject 
     }
 }
 

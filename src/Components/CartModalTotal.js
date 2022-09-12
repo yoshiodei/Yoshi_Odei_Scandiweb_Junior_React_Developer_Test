@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 
 class CartModalTotal extends Component {
     render() {
-    const {cartItems, currencyLabel} = this.props;
-    const total = cartItems.reduce((acc,item) => ( acc + (item.prices[currencyLabel.index].amount * item.quantity) ),0);
+    const {cartList, currencyLabel} = this.props;
+    const total = cartList.reduce((acc,item) => ( acc + (item.prices[currencyLabel.index].amount * item.quantity) ),0);
         return (
             <div className='navbar__modal-total'>
                 <h4>Total</h4>

@@ -13,7 +13,7 @@ class CartTotal extends Component {
 
     render() {        
         const {tax} = this.state;
-        const {cartItems:items,currencyLabel} = this.props;
+        const {cartList:items,currencyLabel} = this.props;
 
         const quantity = items.reduce((acc,item) => ( acc + item.quantity ),0);
         const netTotal = items.reduce((acc,item) => ( acc + (item.prices[currencyLabel.index].amount * item.quantity) ),0);
