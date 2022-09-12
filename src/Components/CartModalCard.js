@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../Styles/CartModalCard/CartModalCard.styles.css';
 import CartModalAttribute from './CartModalAttribute';
-import { updateCartList,updateCartObject } from '../Redux/action';
+import { updateCartObject } from '../Redux/action';
 
 class CartModalCard extends Component {
     constructor(props){
@@ -82,12 +82,11 @@ class CartModalCard extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        cartItems : state.cartItems,
         cartObject : state.cartObject,
         currencyLabel : state.currency
     }
 }
 
-const mapDispatchToProps = { updateCartList, updateCartObject };
+const mapDispatchToProps = { updateCartObject };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartModalCard);

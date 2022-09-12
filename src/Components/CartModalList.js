@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CartModalCard from './CartModalCard';
 
 class CartModalList extends Component {
     constructor(props){

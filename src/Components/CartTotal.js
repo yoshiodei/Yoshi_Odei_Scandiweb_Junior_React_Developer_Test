@@ -39,7 +39,6 @@ class CartTotal extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        cartItems : state.cartItems,
         currencyLabel : state.currency
     }
 }

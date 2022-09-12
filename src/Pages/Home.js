@@ -26,9 +26,11 @@ class Home extends Component {
                                 <>
                                 <h1 className='category__header'>All</h1>
                                 <section className='card-section'>
-                                    {products.map(product => (
-                                    <CategoryCard product={product} />
-                                )) }
+                                    {
+                                    products.map(product => (
+                                        <CategoryCard product={product} />
+                                    ))
+                                    }
                             </section>
                             </>
                             )

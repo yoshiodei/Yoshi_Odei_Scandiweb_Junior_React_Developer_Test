@@ -8,10 +8,9 @@ import CartModalCard from '../Components/CartModalCard';
 import CurrencySwitcher from '../Components/CurrencySwitcher';
 import {connect} from 'react-redux';
 import CartModalTotal from '../Components/CartModalTotal';
-import { updateCartList, changeCurrency, changeCategory, updateCartObject, restoreCartObject } from '../Redux/action';
+import { updateCartList, changeCurrency, updateCartObject, restoreCartObject } from '../Redux/action';
 import { GET_CATEGORIES } from '../EndPointQueries/queries';
 import { Query } from "@apollo/client/react/components";
-import CartModalList from '../Components/CartModalList';
 
 class Navbar extends Component {
 
@@ -23,6 +22,7 @@ class Navbar extends Component {
         const cartItem = window.sessionStorage.getItem('cartItem');
         const cartObject = window.sessionStorage.getItem('cartObject');
         const currency = window.sessionStorage.getItem('currency');
+
         if(cartItem) this.props.updateCartList(JSON.parse(cartItem));
         if(cartObject) this.props.restoreCartObject(JSON.parse(cartObject));
         if(currency) this.props.changeCurrency(JSON.parse(currency));
@@ -32,7 +32,6 @@ class Navbar extends Component {
         const [currencySwitcherCaret] = document.getElementsByClassName('navbar__button-icon');
         const [currencySwitcher] = document.getElementsByClassName('navbar__currency-switcher-div');
         this.setState({cartOverlayModal, currencySwitcher, currencySwitcherCaret,cartOverlayModaContainer});
-
     }
 
     toggleModal = () => {
@@ -52,7 +51,7 @@ class Navbar extends Component {
     }
 
     render() {
-        const { cartItems, currencyLabel, changeCategory, cartObject } = this.props;
+        const { currencyLabel, cartObject } = this.props;
         const category = window.location.href.split('3000/')[1] || 'all';
 
         let newCartList = [];
@@ -120,7 +119,6 @@ class Navbar extends Component {
                                     }<CartModalTotal cartList={newCartList} /></> :
                                     <h3 className='navbar__cart-empty-header'>Cart is Empty</h3>
                                 }
-                                
                             <div className='navbar__modal-button-div'>
                                 <Link to='/cart' className='navbar__modal-button' onClick={this.toggleModal}>VIEW BAG</Link>
                                 <button className='navbar__modal-button navbar__modal-button--green'onClick={this.toggleModal}>CHECK OUT</button>
@@ -136,7 +134,6 @@ class Navbar extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        cartItems : state.cartItems,
         currencyLabel : state.currency,
         category: state.category,
         cartObject : state.cartObject
@@ -147,8 +144,7 @@ const mapDispatchToProps = {
     updateCartList, 
     restoreCartObject,
     updateCartObject,
-    changeCurrency, 
-    changeCategory 
+    changeCurrency 
 }
 
 export default connect(mapStateToProps,mapDispatchToProps)(Navbar);

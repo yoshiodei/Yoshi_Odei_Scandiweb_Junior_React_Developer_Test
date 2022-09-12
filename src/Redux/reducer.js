@@ -8,7 +8,6 @@ import {
 } from './action.type';
 
 const initialState = {
-    cartItems: [],
     category: 'all',
     cartObject: {},
     currency: {label: 'USD', symbol: '$', index: 0}

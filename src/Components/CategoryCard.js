@@ -22,8 +22,6 @@ class CategoryCard extends Component {
             });
         }
 
-        
-
         const foundItemInCart = this.props.cartObject[name]?.find(item => item.id === newProductId);
         if(!foundItemInCart){
             const cartProduct = {...product, quantity: 1, id: newProductId, selectedAttribute: newList};
@@ -61,7 +59,6 @@ class CategoryCard extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        cartItems : state.cartItems,
         currencyLabel : state.currency,
         cartObject: state.cartObject
     }

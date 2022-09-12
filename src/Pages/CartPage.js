@@ -14,7 +14,7 @@ class CartPage extends Component {
     }
 
     render() {
-        const {cartItems, currencyLabel, cartObject} = this.props;
+        const {currencyLabel, cartObject} = this.props;
 
         let newCartList = [];
         for(let key in cartObject){
@@ -40,12 +40,9 @@ class CartPage extends Component {
 
 const mapStateToProps = (state) => {
     return { 
-        cartItems : state.cartItems,
         currencyLabel : state.currency,
         cartObject : state.cartObject 
     }
 }
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps,mapDispatchToProps)(CartPage);
+export default connect(mapStateToProps)(CartPage);
