@@ -253,9 +253,7 @@
 }
 
 .navbar__logo {
-  -webkit-box-flex: 1;
-      -ms-flex: 1;
-          flex: 1;
+  width: 35px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
