@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateCartList } from '../Redux/action';
+import { updateCartObject } from '../Redux/action';
 import '../Styles/CartCard/CartCard.styles.css';
 import CartCardCarousel from './CartCardCarousel';
 import CartPageAttributes from './CartPageAttributes';
@@ -10,24 +10,22 @@ class CartCard extends Component {
         super(props);
     }
 
-
-    addToQuantity = (id) => {
-        const newCartList = this.props.cartItems.map(cartItem => (
-            cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}
-            ));
-            this.props.updateCartList(newCartList);
+    addToQuantity = (item) => {
+        const {id, name} = item;
+        const newCartList = this.props.cartObject[name].map(cartItem => (cartItem.id !== id ? cartItem : {...cartItem, quantity: ++cartItem.quantity}) );
+        this.props.updateCartObject({updateKey: name, updateItem: newCartList});
     }
 
     subtractFromQuantity = (item) => {
+        const {id, name} = item;
+
         if(item.quantity > 1) {
-            const newCartList = this.props.cartItems.map(
-                cartItem => (cartItem.id !== item.id ? cartItem : {...cartItem, quantity: --cartItem.quantity}
-                    ));
-                    this.props.updateCartList(newCartList);
+            const newCartList = this.props.cartObject[name].map(cartItem => (cartItem.id !== id ? cartItem : {...cartItem, quantity: --cartItem.quantity}) );
+            this.props.updateCartObject({updateKey: name, updateItem: newCartList});
         }
         else {
-            const newCartList = this.props.cartItems.filter( cartItem => cartItem.id !== item.id );
-            this.props.updateCartList(newCartList);
+            const newCartList = this.props.cartObject[name].filter( cartItem => cartItem.id !== id );
+            this.props.updateCartObject({updateKey: name, updateItem: newCartList});
         }
     }
 
@@ -60,7 +58,7 @@ class CartCard extends Component {
                     
                     <div className='cart-card__right-div'>
                         <div className='cart-card__counter-div'>
-                            <div className='cart-card__counter-button' onClick={() => this.addToQuantity(cartItem.id)}>
+                            <div className='cart-card__counter-button' onClick={() => this.addToQuantity(cartItem)}>
                                 <p className='cart-card__counter-button-text'>+</p>
                             </div>
                             <div className='cart-card__counter-value'>
@@ -83,10 +81,11 @@ class CartCard extends Component {
 const mapStateToProps = (state) => {
     return { 
         cartItems : state.cartItems,
-        currencyLabel : state.currency
+        currencyLabel : state.currency,
+        cartObject: state.cartObject
     }
 }
 
-const mapDispatchToProps = { updateCartList };
+const mapDispatchToProps = { updateCartObject };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CartCard);
